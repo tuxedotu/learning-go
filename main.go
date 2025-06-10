@@ -13,9 +13,5 @@ func main() {
 	// fmt.Printf("Remaining (after %d): %d\n", lasagnaInOven, lasagna.RemainingOvenTime(lasagnaInOven))
 
 	// ...TCP...
-	// TCP - Server
-	// tcp.Server()
-
-	// TCP - Client
-	tcp.Client()
+	tcp.Run()
 }
