@@ -1,13 +1,14 @@
-package tcp
+package main
 
 import (
 	"database/sql"
 	"encoding/gob"
 	"fmt"
-	"github.com/tuxedotu/learning-go/playground-db"
 	"net"
 	"os"
 	"strings"
+
+	"github.com/tuxedotu/learning-go/playground-db"
 )
 
 const SrvAddr = "localhost"
@@ -58,10 +59,14 @@ func server() {
 		}
 
 		go handleConnectionOnServer(connection, loggingDb)
+		// clientMsg := make(chan string)
+		// go func() { clientMsg <- handleConnectionOnServer(connection, loggingDb) }()
+		// fmt.Println(<-clientMsg)
+
 	}
 }
 
-func handleConnectionOnServer(currentConn net.Conn, db *sql.DB) {
+func handleConnectionOnServer(currentConn net.Conn, db *sql.DB) string {
 	var msg string
 	err := gob.NewDecoder(currentConn).Decode(&msg)
 
@@ -73,10 +78,11 @@ func handleConnectionOnServer(currentConn net.Conn, db *sql.DB) {
 	}
 
 	currentConn.Close()
+	return msg
 }
 
-// ext: Run tcp app
-func Run() {
+// MAIN
+func main() {
 	server()
 	// client()
 }
