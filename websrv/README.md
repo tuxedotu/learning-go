@@ -13,4 +13,11 @@
     - [x] action: signup -> create user & sessionToken
     - [x] action: login -> update sessionToken
     - [ ] logic: remove token from cache after expiry (when?)
-- [ ] *extra*: '/stats' route to see/print all current srv vars/caches/stores (client/srv-side?; over-the-air html updates?)
+- [x] shared message board
+    - collection of messages (author, msg, createdAt)
+    - range in template
+- [ ] *messageboard* -> live/automatic-client-side reload via htmx-trigger="load every Ns" or sth like it
+    - make view hot-reloadable instead of (lazy ass) reroute
+- [ ] *login/signup* -> add visual error ui
+    - TODO: signup -> check for existing users
+- [ ] **extra**: '/stats' route to see/print all current srv vars/caches/stores (client/srv-side?; over-the-air html updates?)

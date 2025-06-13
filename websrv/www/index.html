@@ -10,8 +10,9 @@
   </head>
   <body>
     <div id="main-body">
-      <h1>Hello {{or .Name "Stranger"}}!</h1>
+      <h1> Welcome, {{or .User.Name "Stranger"}}!</h1>
+      {{template "messageboard" .}}
     </div>
-    {{template "nav"}}
+    {{template "nav" .User}}
   </body>
 </html>

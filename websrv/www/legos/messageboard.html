@@ -1,0 +1,16 @@
+{{define "messageboard"}}
+<div id="messageboard">
+  <h6><b>Global Messageboard</b> - feel free to join in!</h6>
+  <ul>
+    {{range $id, $message := .Messages}}
+    <li><label>{{$message.Author}}: </label>{{$message.Msg}}</li>
+    {{end}}
+  </ul>
+  {{if .User.Id}}
+  <form id="message-input">
+    <input autofocus type="text" name="message" placeholder="*tap,tap,tap*..."></input>
+    <button hx-post="/message">###</button>
+  </form>
+  {{end}}
+</div>
+{{end}}

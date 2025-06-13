@@ -1,6 +1,7 @@
 {{define "nav"}}
 <div id="navbar">
-  <a href="/"><button>Click Me, if you dare</button></a>
-  <a href="/login"><button>Or Me, muhahaha</button></a>
+  <a href="/"><button>^__^</button></a>
+  <label>!></label>
+  <a href="/login"><button>{{if .Name}}{{"Edit Profile"}}{{else}}{{"Be no Stranger!"}}{{end}}</button></a>
 </div>
 {{end}}
