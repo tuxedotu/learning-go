@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title></title>
+    <link href="styles/index.css" rel="stylesheet">
+    <link rel="icon" type="image/x-icon" href="assets/favicon.ico" >
+    <script src="js/htmx.min.js"></script>
+  </head>
+  <body>
+    <div>
+      <form id="login-form">
+        <h2>Username</h2>
+        <input name="name" placeholder='{{or .Name "Username..."}}'></input>
+        {{if not .Name}}
+        <button hx-post="/login" hx-target="#login-form">login</button>
+        <button hx-post="/signup" hx-target="#login-form">signup</button>
+        {{else}}
+        <button hx-post="/update" hx-target="#login-form">update</button>
+        {{end}}
+      </form>
+    </div>
+    {{template "nav"}}
+  </body>
+</html>
