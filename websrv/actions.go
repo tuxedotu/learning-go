@@ -97,6 +97,12 @@ func updateUser(w http.ResponseWriter, r *http.Request) {
 		http.Error(w, "No empty updates allowed!", http.StatusBadRequest)
 		return
 	}
+	if len(r.CookiesNamed("session_token")) < 1 {
+		fmt.Printf("- ERR: trying update w/o valid token!\n")
+		w.Header().Set("HX-Redirect", "/login")
+		w.WriteHeader(http.StatusBadRequest)
+		return
+	}
 	session, ok := sessionsCache[r.CookiesNamed("session_token")[0].Value]
 	if !ok {
 		fmt.Printf("- ERR: no such token '%v'\n", r.CookiesNamed("session_token")[0].Value)
