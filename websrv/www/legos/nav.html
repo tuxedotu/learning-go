@@ -1,7 +1,10 @@
 {{define "nav"}}
 <div id="navbar">
-  <a href="/"><button>^__^</button></a>
-  <label>!></label>
-  <a href="/login"><button>{{if .Name}}{{"Edit Profile"}}{{else}}{{"Be no Stranger!"}}{{end}}</button></a>
+  <div>
+    <!-- move <hr> + fist <a> in here for coloring both (& uncomment flex:1 in globals) -->
+  </div>
+  <hr />
+  <a autofocus href="/login">>> START CHATTING <<</a>
+  <a href="/"># HOME #</a>
 </div>
 {{end}}

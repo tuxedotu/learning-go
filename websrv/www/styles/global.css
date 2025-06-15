@@ -1,0 +1,335 @@
+html {
+  height: 100%;
+}
+body {
+  font-family: "JetBrains Mono";
+  font-weight: 400; 
+  background-color: var(--bg);
+  color: var(--fg);
+  margin: 0;
+  height: 100vh;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+::selection {
+  background-color: var(--bg);
+  color: var(--orange);
+}
+
+#main-body {
+  padding: 30px 30px 10px 30px;
+  display: flex;
+  flex-direction: column;
+  max-height: 100%;
+  overflow: auto;
+}
+
+#login-body {
+  padding: 30px;
+}
+
+/* headings */
+h1 {
+  font-size: 22pt;
+  color: var(--red);
+  margin: 0;
+  flex-shrink: 0;
+
+  &::before {
+    content: "#";
+    padding-right: 20px;
+    color: var(--red-dim);
+  }
+}
+
+h2 {
+  color: var(--green);
+  font-size: 16pt;
+  margin: 0;
+  font-weight: 400;
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+  flex-shrink: 0;
+
+  & > b::before {
+    content: "##";
+    padding-right: 20px;
+    color: var(--green-dim);
+  }
+
+  & > span {
+    font-size: 14pt;
+  }
+}
+
+/* generic elements */
+hr {
+  width: 3em;
+  margin: 5px 0 10px 0;
+  border: none;
+  flex-shrink: 0;
+
+  &::before {
+    content: "~ ~ ~";
+    font-weight: 900;
+    color: var(--bg3);
+  }
+}
+
+input {
+  font-family: inherit;
+  padding: 0 10px 0 10px;
+  border: none;
+  background-color: transparent;
+  color: var(--fg);
+  font-size: 14pt;
+
+  &:focus {
+    outline: none;
+  }
+}
+
+button {
+  font-family: inherit;
+  font-size: 12pt;
+  border: none;
+  color: var(--green);
+  background-color: transparent;
+
+  padding: 0 7px;
+  margin-top: 5px;
+}
+
+label {
+  font-weight: bold;
+}
+
+ul {
+  font-size: 18px;
+  padding-left: 0;
+  list-style-type: none;
+
+  & > li > label {
+    font-weight: 600;
+    user-select: none;
+  }
+  & > li::before {
+    content: ">";
+    color: var(--bg3);
+    margin-right: 13px;
+  }
+}
+
+
+/* named elements */
+.error-label {
+  font-size: 12pt;
+  color: var(--orange);
+}
+#login-error {
+  margin-top: 15px;
+}
+
+.comment {
+  color: var(--bg3);
+  user-select: none;
+}
+
+.submit {
+  background-image: url('../assets/angle-up-solid.svg');
+  width: 20%;
+}
+
+/* nav block */
+#navbar {
+  font-size: 18px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-end;
+  position: relative;
+}
+
+#navbar > a, #navbar > div > a {
+  color: var(--purple);
+  text-decoration: none;
+  margin: 0 10px;
+
+  transition: .2s ease;
+  &:hover {
+    color: var(--fg) !important;
+    margin-top: -7px;
+  }
+  &:focus {
+    outline: none;
+    color: var(--fg) !important;
+    margin-top: -7px;
+  }
+}
+
+#navbar > div {
+  /* flex: 1; */
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+
+  &:hover {
+    hr {
+      border: 2px dashed var(--fg);
+    }
+    a {
+      color: var(--fg) !important;
+      margin-top: -7px;
+    }
+  }
+}
+
+#navbar > hr {
+  flex: 1;
+  position: relative;
+  height: 0;
+  border: 2px dashed var(--bg3);
+  margin: 0 10px 0 20px;
+}
+
+/* messageboard */
+#messageboard {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+
+  & > h2 > span.comment {
+    margin-left: 40px;
+  }
+}
+
+#message-log {
+  overflow: auto;
+  scroll-snap-type: y mandatory;
+}
+
+#message-log > ul {
+  scroll-snap-align: end;
+}
+
+#message-input {
+  display: flex;
+  align-items: center;
+  margin-top: 5px;
+}
+#message-input > input {
+  margin: 0;
+  padding: 0 10px;
+  font-size: 12pt;
+  width: 20%;
+  cursor: default;
+}
+
+#message-input > button {
+  color: var(--red);
+  font-size: 14pt;
+  font-weight: 900;
+  text-shadow: 5px 5px black;
+  transition: .2s ease;
+  padding: 0;
+  
+  & > span {
+    font-weight: 400;
+    color: var(--bg3);
+    text-shadow: none;
+    margin: 0;
+    padding: 5px;
+    cursor: default !important;
+  }
+
+  &:hover {
+    color: var(--orange);
+    cursor: pointer;
+  }
+
+  &:focus {
+    outline: none;
+    padding-top: -7px;
+    color: var(--orange);
+  }
+}
+
+/* css helpers */
+.hide-sm {
+  display: inherit;
+}
+
+.hide-lg {
+  display: none;
+}
+
+/* mobile adaption - caus why tf not at this point lmao  */
+@media screen and (max-width: 670px) {
+  /* css helpers */
+  .hide-sm {
+    display: none;
+  }
+  .hide-lg {
+    display: inherit;
+  }
+
+  /* generics  */
+  h1 {
+    font-size: 16pt;
+  }
+  h2 {
+    font-size: 14pt;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-bottom: 10px;
+    
+    & > span {
+      margin: 15px auto auto auto;
+    }
+  }
+
+  hr {
+    margin: 3px 0;
+  }
+
+  ul {
+    font-size: 12pt;
+  }
+
+  /* specifics */
+  #navbar {
+    font-size: 10pt;
+  }
+
+  #messageboard > h2 {
+    margin: 0;
+
+    & > span.comment {
+      margin: 10px auto 0 auto;
+    }
+  }
+
+  #message-input {
+    justify-content: space-between;
+
+    & > label:first-child {
+      display: none;
+    }
+
+    & > label:nth-child(2) {
+      color: var(--yellow);
+    }
+
+    & > input {
+      flex: 1;
+    }
+
+    & > button > span {
+      display: none;
+    }
+  }
+}

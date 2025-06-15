@@ -4,13 +4,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title></title>
-    <link href="styles/index.css" rel="stylesheet">
+    <link href="styles/global.css" rel="stylesheet">
+    <link href="styles/colors.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/jetbrains-mono@1.0.6/css/jetbrains-mono.min.css" rel="stylesheet">
     <link rel="icon" type="image/x-icon" href="assets/favicon.ico" >
     <script src="js/htmx.min.js"></script>
   </head>
   <body>
     <div id="main-body">
-      <h1> Welcome, {{or .User.Name "Stranger"}}!</h1>
+      <h1>Welcome, {{or .User.Name "Stranger"}}!</h1>
+      <hr />
       {{template "messageboard" .}}
     </div>
     {{template "nav" .User}}

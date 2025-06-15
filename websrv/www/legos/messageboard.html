@@ -1,16 +1,34 @@
+{{define "messages"}}
+{{if .}}
+<ul id="messages">
+  {{range $id, $message := .}}
+  <li><label class="blue">{{$message.Author}}: </label>{{$message.Msg}}</li>
+  {{end}}
+</ul>
+{{end}}
+{{end}}
+
 {{define "messageboard"}}
+{{if .}}
 <div id="messageboard">
-  <h6><b>Global Messageboard</b> - feel free to join in!</h6>
-  <ul>
-    {{range $id, $message := .Messages}}
-    <li><label>{{$message.Author}}: </label>{{$message.Msg}}</li>
-    {{end}}
-  </ul>
+  <h2><b>Global Messageboard</b><span class="comment hide-sm">{ feel free to join in! }</span></h2>
+  <div id="message-log" hx-get="/messages" hx-trigger="every 1s" hx-target="#messages">
+    {{template "messages" .Messages}}
+  </div>
   {{if .User.Id}}
   <form id="message-input">
-    <input autofocus type="text" name="message" placeholder="*tap,tap,tap*..."></input>
-    <button hx-post="/message">###</button>
+    <label>
+      <span class="blue">{{.User.Name}}</span>
+       @ 
+      <span class="yellow">home-page</span>
+    </label>
+    <label>&nbsp;&gt;&gt;</label>
+    <input autofocus id="message-input" type="text" name="message" placeholder="*tap,tap,tap*" />
+    <button hx-post="/message" hx-target="#messageboard" hx-swap="outerHTML">### <span>[send]</span></button>
   </form>
+  {{else}}
+  <h2 class="hide-lg"><span class="comment">{feel free to join in}</span></h2>
   {{end}}
 </div>
+{{end}}
 {{end}}

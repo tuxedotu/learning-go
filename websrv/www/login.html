@@ -4,18 +4,23 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title></title>
-    <link href="styles/index.css" rel="stylesheet">
+    <link href="styles/global.css" rel="stylesheet">
+    <link href="styles/colors.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/jetbrains-mono@1.0.6/css/jetbrains-mono.min.css" rel="stylesheet">
     <link rel="icon" type="image/x-icon" href="assets/favicon.ico" >
     <script src="js/htmx.min.js"></script>
   </head>
   <body>
-    <div>
+    <div id="login-body">
       <form id="login-form">
         <h1>Login</h1>
-        <input autofocus name="name" placeholder='{{or .Name "Username..."}}'></input>
+        <hr />
+        <label><span class="yellow">login-page</span> $ </label>
+        <input autofocus name="name" placeholder='{{or .Name "Username"}}'></input>
         {{if not .Name}}
-        <button hx-post="/login">login</button>
-        <button hx-post="/signup">signup</button>
+        <button hx-post="/login" hx-target="#login-error">login</button>
+        <button hx-post="/signup" hx-target="#login-error">signup</button>
+        <div id="login-error"></div>
         {{else}}
         <button hx-post="/update" hx-target="#login-form">update</button>
         {{end}}

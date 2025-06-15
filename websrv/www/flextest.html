@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+  </head>
+  <style>
+html {
+  height: 100%;
+}
+body {
+  background: purple;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin: 0;
+  height: 100%;
+}
+#parent {
+  display: flex;
+  flex-direction: column;
+  background: red;
+}
+#another-parent {
+  display: flex;
+  flex-direction: row;
+  background: green;
+}
+
+  </style>
+  <body>
+    <div id="parent">
+      <label class="child">i am a child</label>
+      <label class="child">i am a child</label>
+    </div>
+    <div id="another-parent">
+      <label class="child">i am another child</label>
+      <label class="child">i am another child</label>
+    </div>
+  </body>
+</html>
