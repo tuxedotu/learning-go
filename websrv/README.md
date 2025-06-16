@@ -6,7 +6,11 @@
 - [font source (pixelgame)](https://www.fontspace.com/pixel-game-font-f121080)
 - [gruvbox-css](https://github.com/YV31/gruvbox-css/tree/master)
 
-## explore guide
+## current todos:
+- [X] *redirects* -> make 'default' into "/"-case and redirect to "/" by default 
+- [ ] *ui*: -> **mobile** (input fields & login) || **navbar** (position)
+
+## ideas to explore
 - [x] favicon.ico
 - [x] login/signup logic
 - [x] htmx + go templating ('hx-'handles, {{}} mechanics, etc.)

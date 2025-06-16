@@ -59,6 +59,9 @@ func serveWebpage(writer http.ResponseWriter, req *http.Request) {
 
 	/// routing ///
 	switch req.URL.Path {
+	case "/flextest":
+		tmpl = template.Must(template.ParseFiles("./www/flextest.html"))
+
 	case "/login":
 		tmpl = template.Must(template.ParseFiles(
 			"./www/login.html",
@@ -68,9 +71,7 @@ func serveWebpage(writer http.ResponseWriter, req *http.Request) {
 		data = userCache[userSession.userId]
 		cacheMutex.RUnlock()
 
-	case "/flextest":
-		tmpl = template.Must(template.ParseFiles("./www/flextest.html"))
-	default:
+	case "/":
 		tmpl = template.Must(template.ParseFiles(
 			"./www/index.html",
 			"./www/legos/nav.html",
@@ -86,6 +87,9 @@ func serveWebpage(writer http.ResponseWriter, req *http.Request) {
 		}
 		cacheMutex.RUnlock()
 
+	default:
+		http.Redirect(writer, req, "/", http.StatusSeeOther)
+		return
 	}
 	fmt.Printf("- serving '%v' to client: %v\n", tmpl.Name(), req.RemoteAddr)
 	tmpl.Execute(writer, data)

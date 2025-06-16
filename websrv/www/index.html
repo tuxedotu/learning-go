@@ -14,7 +14,9 @@
     <div id="main-body">
       <h1>Welcome, {{or .User.Name "Stranger"}}!</h1>
       <hr />
+      <h2><b>Global Messageboard</b><span class="comment hide-sm">{ feel free to join in! }</span></h2>
       {{template "messageboard" .}}
+      <h2 class="hide-lg"><span class="comment">{feel free to join in}</span></h2>
     </div>
     {{template "nav" .User}}
   </body>

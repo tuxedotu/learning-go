@@ -1,5 +1,6 @@
 html {
   height: 100%;
+  cursor: default;
 }
 body {
   font-family: "JetBrains Mono";
@@ -16,7 +17,7 @@ body {
 
 ::selection {
   background-color: var(--bg);
-  color: var(--orange);
+  color: var(--purple);
 }
 
 #main-body {
@@ -29,6 +30,11 @@ body {
 
 #login-body {
   padding: 30px;
+  height: 100%;
+}
+
+#login-form {
+  /* font-size: 12pt; */
 }
 
 /* headings */
@@ -66,18 +72,22 @@ h2 {
   }
 }
 
+h2 > span.comment {
+  margin-left: 40px;
+}
+
 /* generic elements */
 hr {
-  width: 3em;
-  margin: 5px 0 10px 0;
-  border: none;
+  /* width: 3em; */
+  margin: 10px 0 10px 0;
+  border: 2px dashed var(--bg3) ;
   flex-shrink: 0;
 
-  &::before {
-    content: "~ ~ ~";
-    font-weight: 900;
-    color: var(--bg3);
-  }
+  /* &::before { */
+  /*   content: "~ ~ ~"; */
+  /*   font-weight: 900; */
+  /*   color: var(--bg3); */
+  /* } */
 }
 
 input {
@@ -86,7 +96,7 @@ input {
   border: none;
   background-color: transparent;
   color: var(--fg);
-  font-size: 14pt;
+  font-size: 12pt;
 
   &:focus {
     outline: none;
@@ -96,12 +106,21 @@ input {
 button {
   font-family: inherit;
   font-size: 12pt;
+  font-weight: 600;
   border: none;
   color: var(--green);
   background-color: transparent;
+  cursor: pointer;
 
   padding: 0 7px;
   margin-top: 5px;
+
+  transition: .1s ease;
+  &:hover, &:focus {
+    outline: none;
+    color: var(--purple);
+    translate: 0 -2px;
+  }
 }
 
 label {
@@ -109,7 +128,7 @@ label {
 }
 
 ul {
-  font-size: 18px;
+  font-size: 12pt;
   padding-left: 0;
   list-style-type: none;
 
@@ -146,7 +165,7 @@ ul {
 
 /* nav block */
 #navbar {
-  font-size: 18px;
+  font-size: 14pt;
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -155,19 +174,21 @@ ul {
 }
 
 #navbar > a, #navbar > div > a {
-  color: var(--purple);
+  color: var(--yellow);
   text-decoration: none;
   margin: 0 10px;
+  font-weight: 600;
 
-  transition: .2s ease;
-  &:hover {
-    color: var(--fg) !important;
-    margin-top: -7px;
-  }
-  &:focus {
+  transition: .1s ease;
+  &:hover, &:focus {
     outline: none;
-    color: var(--fg) !important;
-    margin-top: -7px;
+    translate: 0 -2px;
+    color: var(--purple-dim)
+  }
+
+  & > span {
+    color: var(--fg);
+    font-weight: 400;
   }
 }
 
@@ -196,37 +217,50 @@ ul {
   margin: 0 10px 0 20px;
 }
 
-/* messageboard */
-#messageboard {
+/* message-container */
+#message-container {
   display: flex;
   flex-direction: column;
   overflow: hidden;
-
-  & > h2 > span.comment {
-    margin-left: 40px;
-  }
+  max-width: 800px;
+  border: 2px dotted var(--bg2);
+  border-radius: 5px;
 }
 
 #message-log {
   overflow: auto;
   scroll-snap-type: y mandatory;
+  margin: 5px 0 0 5px;
 }
 
 #message-log > ul {
   scroll-snap-align: end;
+  font-size: 12pt;
+  list-style-position: outside;
 }
 
 #message-input {
   display: flex;
   align-items: center;
-  margin-top: 5px;
+  margin-top: 10px;
+  font-size: 12pt;
+  border-top: 2px dotted var(--bg2);
+  border-radius: 5px;
+  padding: 0 10px;
 }
+
+#message-input > label:nth-child(2) {
+  color: var(--bg2);
+}
+
 #message-input > input {
   margin: 0;
-  padding: 0 10px;
+  flex: 1;
+  padding: 10px;
   font-size: 12pt;
-  width: 20%;
   cursor: default;
+  border: none;
+  color: var(--fg);
 }
 
 #message-input > button {
@@ -234,8 +268,10 @@ ul {
   font-size: 14pt;
   font-weight: 900;
   text-shadow: 5px 5px black;
-  transition: .2s ease;
   padding: 0;
+  margin: 0;
+  margin-right: auto;
+  flex: 0;
   
   & > span {
     font-weight: 400;
@@ -246,15 +282,12 @@ ul {
     cursor: default !important;
   }
 
-  &:hover {
-    color: var(--orange);
-    cursor: pointer;
-  }
-
-  &:focus {
+  transition: .1s ease;
+  &:hover, &:focus {
     outline: none;
-    padding-top: -7px;
-    color: var(--orange);
+    color: var(--purple-dim);
+    cursor: pointer;
+    translate: 0 -2px;
   }
 }
 
@@ -302,11 +335,12 @@ ul {
 
   /* specifics */
   #navbar {
-    font-size: 10pt;
+    font-size: 12pt;
   }
 
-  #messageboard > h2 {
+  #message-container > h2 {
     margin: 0;
+    margin-bottom: 8px;
 
     & > span.comment {
       margin: 10px auto 0 auto;
@@ -320,12 +354,9 @@ ul {
       display: none;
     }
 
-    & > label:nth-child(2) {
-      color: var(--yellow);
-    }
-
     & > input {
       flex: 1;
+      padding: 5px 10px;
     }
 
     & > button > span {

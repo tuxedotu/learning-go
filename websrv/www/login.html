@@ -13,9 +13,9 @@
   <body>
     <div id="login-body">
       <form id="login-form">
-        <h1>Login</h1>
+        <h1>Join the Talks!</h1>
         <hr />
-        <label><span class="yellow">login-page</span> $ </label>
+        <label class="bg2"><span class="yellow">login-page</span> &gt;&gt;</label>
         <input autofocus name="name" placeholder='{{or .Name "Username"}}'></input>
         {{if not .Name}}
         <button hx-post="/login" hx-target="#login-error">login</button>
@@ -26,6 +26,6 @@
         {{end}}
       </form>
     </div>
-    {{template "nav" .}}
+    {{template "nav"}}
   </body>
 </html>

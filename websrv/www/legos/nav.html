@@ -1,10 +1,15 @@
 {{define "nav"}}
+{{if .}}
 <div id="navbar">
-  <div>
-    <!-- move <hr> + fist <a> in here for coloring both (& uncomment flex:1 in globals) -->
-  </div>
   <hr />
-  <a autofocus href="/login">>> START CHATTING <<</a>
-  <a href="/"># HOME #</a>
+  <a href="/"><span>A: </span>home</a>
+  <a autofocus href="/login"><span>B: </span>
+    {{if .Name}}
+      {{printf "%s's space" .Name}}
+    {{else}}
+      {{print "login"}}
+    {{end}}
+  </a>
 </div>
+{{end}}
 {{end}}
