@@ -19,11 +19,10 @@
         <input autofocus name="name" placeholder='{{or .Name "Username"}}' maxlength="10"></input>
         {{if not .Name}}
         <button hx-post="/login" hx-target="#login-error">login</button>
-        <button hx-post="/signup" hx-target="#login-error">signup</button>
-        <div id="login-error"></div>
         {{else}}
-        <button hx-put="/login" hx-target="#login-form">update</button>
+        <button hx-put="/login" hx-target="#login-error">update</button>
         {{end}}
+        <div id="login-error"></div>
       </form>
     </div>
     {{template "nav"}}

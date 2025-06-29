@@ -27,7 +27,6 @@ func authenticateRequest(req *http.Request) (session, error) {
 
 	retSesh = sessionsCache[sessionToken]
 	cacheMutex.Unlock()
-	// fmt.Printf("- (authReq) LOG: > session = '%v' \n > error = '%v'", retSesh.expiry, err)
 	return retSesh, err
 }
 

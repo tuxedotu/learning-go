@@ -13,11 +13,7 @@
     </label>
     <label>&nbsp;&gt;&gt;</label>
     <input autofocus id="message-input" type="text" name="name" placeholder="Username..." maxlength="10"/>
-    {{if .Name}}
-    <button hx-put="/login" hx-target="#login-error"><span>[</span>###<span>]</span></button>
-    {{else}}
     <button hx-post="/login" hx-target="#login-error"><span>[</span>###<span>]</span></button>
-    {{end}}
   </form>
   <div id="login-error"></div>
 </div>

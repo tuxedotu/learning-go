@@ -71,9 +71,8 @@ func loginUser(w http.ResponseWriter, r *http.Request) {
 	}
 
 	if familiarUser.Name == "" {
-		fmt.Printf("- (login) WARN: failed login attempt '%v'; no such user!\n", userInput)
-		templ := template.Must(template.ParseFiles("./www/legos/error.html"))
-		templ.ExecuteTemplate(w, "error", "No such user!")
+		// user does not exist ? create one..
+		createUser(w, r)
 		return
 	}
 
@@ -133,6 +132,15 @@ func updateUser(w http.ResponseWriter, r *http.Request) {
 	}
 
 	cacheMutex.Lock()
+	for _, currUser := range userCache {
+		if currUser.Name == userInput {
+			cacheMutex.Unlock()
+			fmt.Printf("- ERR: User already exists!\n")
+			templ := template.Must(template.ParseFiles("./www/legos/error.html"))
+			templ.ExecuteTemplate(w, "error", "User already exists!")
+			return
+		}
+	}
 	user = userCache[session.userId]
 	user.Name = userInput
 	userCache[session.userId] = user
@@ -177,7 +185,7 @@ func userPostsMessage(w http.ResponseWriter, r *http.Request) {
 	templData.User = userCache[session.userId]
 	templData.Messages = messageCache
 	cacheMutex.Unlock()
-	fmt.Printf("- (postMsg) LOG: postedMessage = '%v'(u: %v)\n", postedMessage.Msg, postedMessage.Author)
+	fmt.Printf("- (postMsg) LOG: postedMessage = '%v'(u: %v)\n", postedMessage.Msg, templData.User.Name)
 
 	templ = template.Must(templ.ParseFiles("./www/legos/messageboard.html"))
 	templ.ExecuteTemplate(w, "messageboard", templData)
