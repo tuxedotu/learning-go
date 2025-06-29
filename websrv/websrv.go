@@ -41,8 +41,7 @@ func main() {
 
 	httpMultiplexer.HandleFunc("/", serveWebpage)
 	httpMultiplexer.HandleFunc("POST /login", loginUser)          // hx-action
-	httpMultiplexer.HandleFunc("POST /signup", createUser)        // hx-action
-	httpMultiplexer.HandleFunc("POST /update", updateUser)        // hx-action
+	httpMultiplexer.HandleFunc("PUT /login", updateUser)          // hx-action
 	httpMultiplexer.HandleFunc("POST /message", userPostsMessage) // hx-action
 	httpMultiplexer.HandleFunc("GET /messages", refreshMessages)  // hx-action
 
@@ -62,9 +61,9 @@ func serveWebpage(writer http.ResponseWriter, req *http.Request) {
 	case "/flextest":
 		tmpl = template.Must(template.ParseFiles("./www/flextest.html"))
 
-	case "/login":
+	case "/myspace":
 		tmpl = template.Must(template.ParseFiles(
-			"./www/login.html",
+			"./www/space.html",
 			"./www/legos/nav.html",
 		))
 		cacheMutex.RLock()
@@ -76,6 +75,7 @@ func serveWebpage(writer http.ResponseWriter, req *http.Request) {
 			"./www/index.html",
 			"./www/legos/nav.html",
 			"./www/legos/messageboard.html",
+			"./www/legos/loginbar.html",
 		))
 		cacheMutex.RLock()
 		data = struct {

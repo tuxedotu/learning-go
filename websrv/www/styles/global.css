@@ -1,3 +1,4 @@
+/* general */
 html {
   height: 100%;
   cursor: default;
@@ -33,8 +34,23 @@ body {
   height: 100%;
 }
 
-#login-form {
-  /* font-size: 12pt; */
+.loginbar-body {
+  margin-top: 30px;
+  display: flex;
+  flex-direction: column;
+
+  & > h2 > b {
+    font-style: italic;
+
+    &::before {
+      content: "##!>";
+      font-style: normal;
+    }
+  }
+}
+
+#loginbar {
+  margin-top: 0;
 }
 
 /* headings */
@@ -47,24 +63,23 @@ h1 {
   &::before {
     content: "#";
     padding-right: 20px;
-    color: var(--red-dim);
+    color: var(--bg3);
   }
 }
 
 h2 {
   color: var(--green);
   font-size: 16pt;
-  margin: 0;
+  margin: 10px 0;
   font-weight: 400;
   display: flex;
   align-items: center;
-  margin-bottom: 10px;
   flex-shrink: 0;
 
   & > b::before {
     content: "##";
     padding-right: 20px;
-    color: var(--green-dim);
+    color: var(--bg3);
   }
 
   & > span {
@@ -239,7 +254,7 @@ ul {
   list-style-position: outside;
 }
 
-#message-input {
+.form-input {
   display: flex;
   align-items: center;
   margin-top: 10px;
@@ -249,11 +264,11 @@ ul {
   padding: 0 10px;
 }
 
-#message-input > label:nth-child(2) {
+.form-input > label:nth-child(2) {
   color: var(--bg2);
 }
 
-#message-input > input {
+.form-input > input {
   margin: 0;
   flex: 1;
   padding: 10px;
@@ -263,7 +278,7 @@ ul {
   color: var(--fg);
 }
 
-#message-input > button {
+.form-input > button {
   color: var(--red);
   font-size: 14pt;
   font-weight: 900;
@@ -347,7 +362,7 @@ ul {
     }
   }
 
-  #message-input {
+  .form-input {
     justify-content: space-between;
 
     & > label:first-child {

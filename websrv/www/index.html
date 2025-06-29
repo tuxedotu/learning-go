@@ -17,6 +17,9 @@
       <h2><b>Global Messageboard</b><span class="comment hide-sm">{ feel free to join in! }</span></h2>
       {{template "messageboard" .}}
       <h2 class="hide-lg"><span class="comment">{feel free to join in}</span></h2>
+      {{if not .User.Name}}
+        {{template "loginbar" .User}}
+      {{end}}
     </div>
     {{template "nav" .User}}
   </body>

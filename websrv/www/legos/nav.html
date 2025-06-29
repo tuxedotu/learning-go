@@ -1,15 +1,11 @@
 {{define "nav"}}
-{{if .}}
 <div id="navbar">
   <hr />
   <a href="/"><span>A: </span>home</a>
-  <a autofocus href="/login"><span>B: </span>
-    {{if .Name}}
+  {{if .Name}}
+    <a autofocus href="/myspace"><span>B: </span>
       {{printf "%s's space" .Name}}
-    {{else}}
-      {{print "login"}}
-    {{end}}
-  </a>
+    </a>
+  {{end}}
 </div>
-{{end}}
 {{end}}

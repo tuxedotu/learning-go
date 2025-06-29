@@ -1,0 +1,24 @@
+{{define "loginbar"}}
+<div class="loginbar-body">
+  <h2><b>whoami</b></h2>
+  <form id="loginbar" class="form-input">
+    <label>
+      {{if .Name}}
+        <span class="blue">{{.Name}}</span>
+      {{else}}
+        <span class="orange">???</span>
+      {{end}}
+      @ 
+      <span class="yellow">login</span>
+    </label>
+    <label>&nbsp;&gt;&gt;</label>
+    <input autofocus id="message-input" type="text" name="name" placeholder="Username..." maxlength="10"/>
+    {{if .Name}}
+    <button hx-put="/login" hx-target="#login-error"><span>[</span>###<span>]</span></button>
+    {{else}}
+    <button hx-post="/login" hx-target="#login-error"><span>[</span>###<span>]</span></button>
+    {{end}}
+  </form>
+  <div id="login-error"></div>
+</div>
+{{end}}

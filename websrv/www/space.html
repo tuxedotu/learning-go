@@ -13,16 +13,16 @@
   <body>
     <div id="login-body">
       <form id="login-form">
-        <h1>Join the Talks!</h1>
+        <h1>Edit your info!</h1>
         <hr />
-        <label class="bg2"><span class="yellow">login-page</span> &gt;&gt;</label>
-        <input autofocus name="name" placeholder='{{or .Name "Username"}}'></input>
+        <label class="bg2"><span class="yellow">username</span> &gt;&gt;</label>
+        <input autofocus name="name" placeholder='{{or .Name "Username"}}' maxlength="10"></input>
         {{if not .Name}}
         <button hx-post="/login" hx-target="#login-error">login</button>
         <button hx-post="/signup" hx-target="#login-error">signup</button>
         <div id="login-error"></div>
         {{else}}
-        <button hx-post="/update" hx-target="#login-form">update</button>
+        <button hx-put="/login" hx-target="#login-form">update</button>
         {{end}}
       </form>
     </div>

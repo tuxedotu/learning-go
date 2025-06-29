@@ -8,6 +8,7 @@ import (
 	"time"
 )
 
+// TODO: unify login / signup logic
 func createUser(writer http.ResponseWriter, req *http.Request) {
 	var user User
 	var sessionToken string
@@ -69,7 +70,7 @@ func loginUser(w http.ResponseWriter, r *http.Request) {
 		}
 	}
 
-	if familiarUser == (User{}) {
+	if familiarUser.Name == "" {
 		fmt.Printf("- (login) WARN: failed login attempt '%v'; no such user!\n", userInput)
 		templ := template.Must(template.ParseFiles("./www/legos/error.html"))
 		templ.ExecuteTemplate(w, "error", "No such user!")
